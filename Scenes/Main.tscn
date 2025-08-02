@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dybdqaihtyfrn"]
+[gd_scene load_steps=13 format=4 uid="uid://dybdqaihtyfrn"]
 
 [ext_resource type="Script" uid="uid://df211566m6tco" path="res://Scenes/Main.cs" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://bg03kmwgyfrlh" path="res://Resources/tiles.tres" id="2_kln2b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://gf3hsayhuix0" path="res://Assets/Tiles/highlight_tile.png" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://bt13pmcq85htu" path="res://Scenes/Buildings/Base.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://bqn4iqckcj7fs" path="res://Scenes/Buildings/Village.tscn" id="6_v1gob"]
+[ext_resource type="PackedScene" uid="uid://s52x8ccg78es" path="res://Scenes/UI/GameUI.tscn" id="7_jw32o"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g66wp"]
 load_path = "res://.godot/imported/highlight_tile.png-3ca731a0162bdd69dae09be32a6ce8f6.ctex"
@@ -63,18 +64,4 @@ tile_set = SubResource("TileSet_v1gob")
 texture = SubResource("PlaceholderTexture2D_r150o")
 centered = false
 
-[node name="PlaceTowerButton" type="Button" parent="."]
-offset_left = 10.0
-offset_top = 1041.0
-offset_right = 127.0
-offset_bottom = 1072.0
-text = "Place Tower
-"
-
-[node name="PlaceVillageButton" type="Button" parent="."]
-offset_left = 134.0
-offset_top = 1043.0
-offset_right = 251.0
-offset_bottom = 1074.0
-text = "Place Village
-"
+[node name="GameUi" parent="." instance=ExtResource("7_jw32o")]

@@ -1,5 +1,6 @@
 using Game.Managers;
 using Game.Resources.Buildings;
+using Game.UI;
 using Godot;
 
 namespace Game;
@@ -11,31 +12,30 @@ public partial class Main : Node
 	private Sprite2D cursor;
 	private BuildingResource towerScene;
 	private BuildingResource villageScene;
-	private Button placeTowerButton;
-	private Button placeVillageButton;
 	private Node2D YSortRoot;
 
 	private Vector2I? hoveredGridCell;
 	private BuildingResource toPlaceBuildingResource;
 
+    private GameUI gameUI;
+
 	public override void _Ready()
-	{
-		cursor = GetNode<Sprite2D>("Cursor");
-		towerScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Tower.tres");
-		villageScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Village.tres");
-		placeTowerButton = GetNode<Button>("PlaceTowerButton");
-		placeVillageButton = GetNode<Button>("PlaceVillageButton");
-		gridManager = GetNode<GridManager>("GridManager");
-		YSortRoot = GetNode<Node2D>("YSortRoot");
-		cursor.Visible = false;
+    {
+        cursor = GetNode<Sprite2D>("Cursor");
+        towerScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Tower.tres");
+        villageScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Village.tres");
+        gridManager = GetNode<GridManager>("GridManager");
+        YSortRoot = GetNode<Node2D>("YSortRoot");
+        cursor.Visible = false;
+        gameUI = GetNode<GameUI>("GameUI");
 
-		placeTowerButton.Pressed += OnTowerButtonPressed;
-		placeVillageButton.Pressed += OnVillageButtonPressed;
-		//Alternate Way of connecting signals
-		// placeBuildingButton.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressed));
+        gameUI.PlaceTowerButtonPressed += OnTowerButtonPressed;
+        gameUI.PlaceVillageButtonPressed += OnVillageButtonPressed;
+        //Alternate Way of connecting signals
+        // placeBuildingButton.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressed));
 
-		gridManager.ResourceTilesUpdated += OnResourceTilesUpdated;
-	}
+        gridManager.ResourceTilesUpdated += OnResourceTilesUpdated;
+    }
 
 	public override void _Process(double delta)
 	{

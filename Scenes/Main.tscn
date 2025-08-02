@@ -64,4 +64,4 @@ tile_set = SubResource("TileSet_v1gob")
 texture = SubResource("PlaceholderTexture2D_r150o")
 centered = false
 
-[node name="GameUi" parent="." instance=ExtResource("7_jw32o")]
+[node name="GameUI" parent="." instance=ExtResource("7_jw32o")]

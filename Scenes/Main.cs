@@ -10,32 +10,25 @@ public partial class Main : Node
 
 	private GridManager gridManager;
 	private Sprite2D cursor;
-	private BuildingResource towerScene;
-	private BuildingResource villageScene;
 	private Node2D YSortRoot;
 
 	private Vector2I? hoveredGridCell;
 	private BuildingResource toPlaceBuildingResource;
 
-    private GameUI gameUI;
+	private GameUI gameUI;
 
 	public override void _Ready()
-    {
-        cursor = GetNode<Sprite2D>("Cursor");
-        towerScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Tower.tres");
-        villageScene = GD.Load<BuildingResource>("res://Assets/Resources/Buildings/Village.tres");
-        gridManager = GetNode<GridManager>("GridManager");
-        YSortRoot = GetNode<Node2D>("YSortRoot");
-        cursor.Visible = false;
-        gameUI = GetNode<GameUI>("GameUI");
+	{
+		cursor = GetNode<Sprite2D>("Cursor");	
+		gridManager = GetNode<GridManager>("GridManager");
+		YSortRoot = GetNode<Node2D>("YSortRoot");
+		cursor.Visible = false;
+		gameUI = GetNode<GameUI>("GameUI");
 
-        gameUI.PlaceTowerButtonPressed += OnTowerButtonPressed;
-        gameUI.PlaceVillageButtonPressed += OnVillageButtonPressed;
-        //Alternate Way of connecting signals
-        // placeBuildingButton.Connect(Button.SignalName.Pressed, Callable.From(OnButtonPressed));
+		gameUI.BuildingResourceSelected += OnBuildingResourceSelected;
 
-        gridManager.ResourceTilesUpdated += OnResourceTilesUpdated;
-    }
+		gridManager.ResourceTilesUpdated += OnResourceTilesUpdated;
+	}
 
 	public override void _Process(double delta)
 	{
@@ -75,16 +68,9 @@ public partial class Main : Node
 		gridManager.ClearHighlightedTiles();
 	}
 
-	private void OnVillageButtonPressed()
+	private void OnBuildingResourceSelected(BuildingResource resource)
 	{
-		toPlaceBuildingResource = villageScene;
-		cursor.Visible = !cursor.Visible;
-		gridManager.HighlightBuildableTiles();
-	}
-
-	private void OnTowerButtonPressed()
-	{
-		toPlaceBuildingResource = towerScene;
+		toPlaceBuildingResource = resource;
 		cursor.Visible = !cursor.Visible;
 		gridManager.HighlightBuildableTiles();
 	}

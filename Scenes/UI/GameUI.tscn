@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://s52x8ccg78es"]
+[gd_scene load_steps=4 format=3 uid="uid://s52x8ccg78es"]
 
 [ext_resource type="Script" uid="uid://lwkdn3h4jk40" path="res://Scenes/UI/GameUI.cs" id="1_13cgw"]
+[ext_resource type="Resource" uid="uid://ks6xco3xf6pg" path="res://Assets/Resources/Buildings/Tower.tres" id="2_xkiwj"]
+[ext_resource type="Resource" uid="uid://bgfyqtdq643c8" path="res://Assets/Resources/Buildings/Village.tres" id="3_tog36"]
 
 [node name="GameUI" type="MarginContainer"]
 anchors_preset = 15
@@ -13,22 +15,9 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("1_13cgw")
+buildingResources = Array[Object]([ExtResource("2_xkiwj"), ExtResource("3_tog36")])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
-
-[node name="PlaceVillageButton" type="Button" parent="HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Place Village
-"
-
-[node name="PlaceTowerButton" type="Button" parent="HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Place a Tower For The Cost of 10 Wood"
-text = "Place Tower
-"
-metadata/_edit_use_anchors_ = true
